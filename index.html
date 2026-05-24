@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPENSES-TRACKER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <h2>💰 ExpenseIQ</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <button class="nav-btn active" data-page="dashboard">
+                📊 Dashboard
+            </button>
+            <button class="nav-btn" data-page="statistics">
+                📈 Statistics
+            </button>
+            <button class="nav-btn" data-page="history">
+                🕒 History
+            </button>
+
+        </nav>
+
+        <div class="sidebar-summary">
+
+            <div class="summary-item">
+                <span>Total Balance</span>
+                <h3 id="sidebar-balance">₹0</h3>
+            </div>
+            <div class="summary-item">
+                <span>Total Spent</span>
+                <h3 id="sidebar-spent">₹0</h3>
+            </div>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <div class="heading">
+            <div class="greeting-section">
+                <h2 class="greeting">Good Morning 🌞</h2>
+                <h3 class="subtitle">Track your expenses smartly</h3>
+            </div>
+            <div class="date-badge">
+                <p>20/05/2026</p>
+            </div>
+        </div>
+
+        <div class="cards-container">
+            <div class="summary-card">
+                <span>Total Spent</span>
+                <h3 class="main-spent" id="total-spent">₹0</h3>
+                <p>💸</p>
+            </div>
+            <div class="summary-card">
+                <span>Total Expenses</span>
+                <h3 class="main-spnet" id="total-expenses">₹0</h3>
+                <p>📃</p>
+            </div>
+            <div class="summary-card">
+                <span>Highest Expenses</span>
+                <h3 class="main-spent" id="highest-expense">₹0</h3>
+                <p>📈</p>
+            </div>
+        </div>
+
+        <button class="add-expense-btn" id="add-expense-btn">Add Expense +</button>
+
+        <section class="transaction-section">
+            <h3>Recent Transactions</h3>
+            <ul id="transactions-list"></ul>
+        </section>
+
+    </main>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-box">
+            <button class="close-btn">&times;</button>
+            <h2>Add Expense</h2>
+
+            <form action="" id="add-expense-form">
+                <label for="">Expense name:</label>
+                <input type="text" id="expense-name" placeholder="expense name here...">
+                <label for="">Expense amount:</label>
+                <input type="number" id="expense-amount" placeholder="expense amount here...">
+                <select name="Category" id="expense-category">
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="other">Other</option>
+                </select>
+                <button class="submit" type="submit">Add Expense</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
