@@ -251,3 +251,13 @@ body {
 .submit:hover {
     background-color: #bb9c62;
 }
+
+.delete-btn {
+    background-color: var(--danger);
+    color: white;
+    padding: 5px 12px;
+    font-size: 15px;
+    
+    margin-left: 10px;
+    border: none;
+}
