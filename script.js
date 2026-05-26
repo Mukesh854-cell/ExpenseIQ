@@ -31,9 +31,11 @@ function addExpense() {
     }
 
     expenses.push(expense);
+    localStorage.setItem("expenses", JSON.stringify(expenses));
     form.reset();
     modal.style.display = "none";
     displayExpenses();
+    updateSummary();
 }
 
 form.addEventListener("submit", (e) => {
@@ -53,10 +55,48 @@ function displayExpenses() {
         deleteBtn.textContent = "Delete";
         deleteBtn.classList.add("delete-btn")
         deleteBtn.addEventListener("click", () => {
-            expenses = expenses.filter(expense => expense.id !== Number(li.dataset.id))
+            expenses = expenses.filter(expense => expense.id !== Number(li.dataset.id));
+            localStorage.setItem("expenses", JSON.stringify(expenses));
             displayExpenses();
+            updateSummary();
         })
         li.appendChild(deleteBtn);
     }
 }
 
+function updateSummary() {
+
+    if (expenses.length === 0) {
+        totalSpent.textContent = "0";
+        totalExpense.textContent = "0";
+        highestExpense.textContent = "0";
+        return;
+    }
+
+    let total = 0;
+    for (const expense of expenses) {
+        total += Number(expense.amount);
+    }
+
+    let highest = 0;
+    for (const expense of expenses) {
+        if (Number(expense.amount > highest)) {
+            highest = Number(expense.amount);
+        }
+
+        totalSpent.textContent = "₹" + total;
+        totalExpense.textContent = expenses.length;
+        highestExpense.textContent = "₹" + highest;
+    }
+} 
+
+function loadExpenses() {
+    const saved = localStorage.getItem("expenses");
+    if (saved) {
+        expenses = JSON.parse(saved);
+    }
+    displayExpenses();
+    updateSummary();
+}
+
+loadExpenses();
