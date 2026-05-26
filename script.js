@@ -43,12 +43,32 @@ form.addEventListener("submit", (e) => {
     addExpense();
 })
 
+const categoryIcons = {
+    food: "🍔",
+    transport: "🚗",
+    shopping: "🛍",
+    entertainment: "🎬",
+    other: "📌"
+}
+
 function displayExpenses() {
     transactionList.innerHTML = ""
     for (const expense of expenses) {
         const li = document.createElement("li")
         li.dataset.id = expense.id;
-        li.innerHTML = `${expense.name} - ${expense.category} - ${expense.amount}₹`
+        li.innerHTML = `
+        <div class="expense-left">
+                <span class="category-icon"> ${categoryIcons[expense.category]}</span>
+            <div class="expense-middle">
+                <p>${expense.name}</p>
+                <span>${expense.category}</span>
+            </div>
+        </div>
+
+        <div class="expense-right">
+            <p>₹${expense.amount}</p>
+        </div>
+        `
         transactionList.appendChild(li)
 
         const deleteBtn = document.createElement("button")
@@ -60,7 +80,8 @@ function displayExpenses() {
             displayExpenses();
             updateSummary();
         })
-        li.appendChild(deleteBtn);
+        const expenseRight = li.querySelector(".expense-right");
+        expenseRight.appendChild(deleteBtn);
     }
 }
 
@@ -88,7 +109,7 @@ function updateSummary() {
         totalExpense.textContent = expenses.length;
         highestExpense.textContent = "₹" + highest;
     }
-} 
+}
 
 function loadExpenses() {
     const saved = localStorage.getItem("expenses");

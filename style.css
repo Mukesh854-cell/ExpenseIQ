@@ -140,6 +140,10 @@ body {
     border-left: 2px solid var(--accent);
 }
 
+.summary-card p {
+    font-size: 1.5rem;
+}
+
 .add-expense-btn {
     background-color: var(--accent);
     color: white;
@@ -163,11 +167,55 @@ body {
 }
 
 .transaction-section h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 10px;
-    font-family: "Playfair Display";
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: var(--text-primary);
 }
+
+#transaction-list li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.expense-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.expense-left div p {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.expense-left div span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.expense-left span:first-child {
+    font-size: 1.2rem;
+    line-height: 1;
+} 
+
+.expense-middle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.expense-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+} 
 
 .modal-overlay {
     display: none;
