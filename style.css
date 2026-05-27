@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,16 +12,26 @@
     --text-secondary: #888;
     --accent: #c8a96e;
     --danger: #e07b6a;
-    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     --border: #e8dcc8;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', 'Segoe UI Emoji' sans-serif;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     display: flex;
     min-height: 100vh;
+}
+
+body.dark-theme {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-sidebar: #0f3460;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --border: #2a2a4a;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar {
@@ -58,6 +68,7 @@ body {
     font-size: 16px;
     cursor: pointer;
     transition: 125ms ease-in-out;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .nav-btn:hover {
@@ -109,12 +120,19 @@ body {
 .heading .greeting {
     font-size: 1.8rem;
     font-weight: bold;
-    font-family: "Playfair Display";
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .heading .subtitle {
     font-size: 0.9rem;
     color: var(--text-secondary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.heading-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .heading .date-badge {
@@ -123,6 +141,14 @@ body {
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 0.85rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#theme-toggle {
+    background-color: transparent;
+    border: none;
+    font-size: 1.3rem;
+    margin-left: 10px;
 }
 
 .cards-container {
@@ -138,6 +164,7 @@ body {
     border-radius: 15px;
     box-shadow: var(--shadow);
     border-left: 2px solid var(--accent);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .summary-card p {
@@ -173,7 +200,7 @@ body {
     color: var(--text-primary);
 }
 
-#transaction-list li{
+#transaction-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -203,7 +230,7 @@ body {
 .expense-left span:first-child {
     font-size: 1.2rem;
     line-height: 1;
-} 
+}
 
 .expense-middle {
     display: flex;
@@ -215,7 +242,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-} 
+}
 
 .modal-overlay {
     display: none;
@@ -224,7 +251,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -275,7 +302,8 @@ body {
     gap: 10px;
 }
 
-.modal-box input, .modal-box select {
+.modal-box input,
+.modal-box select {
     padding: 10px;
     width: 100%;
     border: 1px solid black;
@@ -305,7 +333,7 @@ body {
     color: white;
     padding: 5px 12px;
     font-size: 15px;
-    
+
     margin: 10px;
     border: none;
 }

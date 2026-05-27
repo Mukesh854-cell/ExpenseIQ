@@ -109,6 +109,9 @@ function updateSummary() {
         totalExpense.textContent = expenses.length;
         highestExpense.textContent = "₹" + highest;
     }
+
+    document.getElementById("sidebar-balance").textContent = "₹"+total;
+    document.getElementById("sidebar-spent").textContent = "₹"+total;
 }
 
 function loadExpenses() {
@@ -121,3 +124,33 @@ function loadExpenses() {
 }
 
 loadExpenses();
+
+const themeToggle = document.getElementById("theme-toggle");
+
+function toggleTheme() {
+
+    if (document.body.classList.contains("dark-theme")) {
+        document.body.classList.remove("dark-theme");
+        themeToggle.textContent = "🌙"
+    } else {
+        document.body.classList.add("dark-theme");
+        themeToggle.textContent = "☀️"
+    }
+} 
+
+document.getElementById("theme-toggle").addEventListener("click", toggleTheme);
+
+function setGreeting() {
+    const hour = new Date().getHours();
+    const greeting = document.querySelector(".greeting");
+
+    if (hour < 12) {
+        greeting.textContent = "Good Morning 🌞"
+    } else if (hour < 17) {
+        greeting.textContent = "Good Afternoon ☀️"
+    } else {
+        greeting.textContent = "Good Evening 🌙";
+    }
+}
+
+setGreeting();
