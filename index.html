@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXPENSES-TRACKER</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -80,18 +81,37 @@
 
             <section class="transaction-section">
                 <h3>Recent Transactions</h3>
-                <ul id="transaction-list"></ul>         
+                <ul id="transaction-list"></ul>
             </section>
-            
+
         </section>
 
 
         <section id="statistics-page" class="page" style="display: none;">
-            <h2>Statistics</h2>
+            <div class="heading">
+                <div class="greeting-section">
+                    <h2 class="greeting">Statistics 📊</h2>
+                    <p class="subtitle">Your spending breakdown</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="chart-box">
+                    <canvas id="category-chart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <canvas id="daily-chart"></canvas>
+                </div>
+            </div>
         </section>
 
         <section id="history-page" class="page" style="display: none;">
-            <h2>History</h2>
+            <div class="heading">
+                <div class="greeting-section">
+                    <h2 class="greeting">History 🕒</h2>
+                    <p class="subtitle">Your expense history</p>
+                </div>
+            </div>
+            <div id="history-list"></div>
         </section>
 
     </main>
@@ -103,9 +123,9 @@
 
             <form action="" id="add-expense-form">
                 <label for="">Expense name:</label>
-                <input type="text" id="expense-name" placeholder="expense name here...">
+                <input type="text" id="expense-name" placeholder="expense name here..." required>
                 <label for="">Expense amount:</label>
-                <input type="number" id="expense-amount" placeholder="expense amount here...">
+                <input type="number" id="expense-amount" placeholder="expense amount here..." required>
                 <select name="Category" id="expense-category">
                     <option value="food">Food</option>
                     <option value="transport">Transport</option>
