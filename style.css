@@ -22,6 +22,7 @@ body {
     color: var(--text-primary);
     display: flex;
     min-height: 100vh;
+    flex-wrap: wrap;
 }
 
 body.dark-theme {
@@ -30,7 +31,7 @@ body.dark-theme {
     --bg-sidebar: #0f3460;
     --text-primary: #e0e0e0;
     --text-secondary: #a0a0a0;
-    --border: #2a2a4a;
+    --border: #1e1e36;
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -79,22 +80,62 @@ body.dark-theme {
     background-color: var(--accent);
 }
 
+.budget-section {
+    margin-bottom: 10px;
+}
+.budget-section .budget-heading {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.budget-input {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+.budget-input input {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+    background-color: transparent;
+    color: white;
+    outline: none;
+}
+
+.budget-input button {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.budget-stats p {
+    color: var(--text-secondary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5px;
+    margin-top: 8px;
+    font-size: 18px;
+}
+
+.budget-stats span {
+    color: var(--accent);
+    font-weight: bold;
+}
+
 .sidebar-summary {
     margin-top: auto;
     padding-top: 10px;
     border-top: 1px solid var(--border);
-}
-
-.summary-item {
-    margin-bottom: 10px;
-}
-
-.summary-item span {
-    color: var(--text-secondary);
-}
-
-.summary-item h3 {
-    color: var(--accent);
 }
 
 .main-content {
@@ -143,6 +184,7 @@ body.dark-theme {
     font-size: 0.90rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 #theme-toggle {
@@ -200,6 +242,16 @@ body.dark-theme {
     margin-bottom: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: var(--text-primary);
+}
+
+.empty-state {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 #transaction-list li {
@@ -432,5 +484,147 @@ body.dark-theme {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+.footer {
+    background-color: var(--bg-secondary);
+    color: rgb(17, 14, 14);
+    padding: 20px;
+    text-align: center;
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    align-self: flex-end;
+}
+
+.owner {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.owner1 {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+    text-align: center;
+    border-right: 2px solid var(--border);
+}
+
+.copyright {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+
+    body {
+        flex-direction: column;
+    }
+    .sidebar {
+     width: 100%;   
+     position: relative;
+     min-height: auto;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .heading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .greeting-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .greeting-section .greeting {
+        font-size: 1.3rem;
+    }
+
+    #transaction-list li {
+        padding: 8px;
+    }
+
+    .expense-left {
+        gap: 5px;
+    }
+
+    .expense-left span:first-child {
+        font-size: 0.8rem;
+    }
+
+    .expense-middle {
+        gap: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .expense-right {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+    }
+
+    .expense-right p {
+        font-size: 0.9rem;
+        margin-left: 5px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+    }
+
+    .greeting-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chart-container {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        /* justify-content: center; */
+    }
+
+    .chart-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .copyright {
+        font-size: 14px;
+    }
+
+    .owner {
+        gap: 0;
+    }
+
+    .owner1 {
+        font-size: 9px;
+        padding: 4px;
     }
 }

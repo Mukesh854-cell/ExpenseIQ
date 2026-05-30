@@ -21,9 +21,21 @@ closeBtn.addEventListener("click", () => {
 let expenses = [];
 
 function addExpense() {
+
+    const budget =  localStorage.getItem("budget");
+    if (!budget) {
+        alert("Please set a monthly budget first")
+        return;
+    }
+
     const name = document.getElementById("expense-name").value;
     const amount = document.getElementById("expense-amount").value;
     const category = document.getElementById("expense-category").value;
+
+    if (amount <= 0) {
+        alert("Please fill in all fields correctly")
+        return;
+    }
 
     const expense = {
         id: Date.now(),
@@ -57,6 +69,16 @@ const categoryIcons = {
 
 function displayExpenses() {
     transactionList.innerHTML = ""
+
+    if (expenses.length === 0) {
+        transactionList.innerHTML =
+        `<div class="empty-state">
+            <div>😊 No expenses yet </div>
+            <div>Add your first expense!</div>
+        </div>`
+        return;
+    }
+    
     for (const expense of expenses) {
         const li = document.createElement("li")
         li.dataset.id = expense.id;
@@ -118,8 +140,8 @@ function updateSummary() {
         highestExpense.textContent = "₹" + highest;
     }
 
-    document.getElementById("sidebar-balance").textContent = "₹" + total;
-    document.getElementById("sidebar-spent").textContent = "₹" + total;
+    updateBudget();
+
 }
 
 function loadExpenses() {
@@ -129,6 +151,7 @@ function loadExpenses() {
     }
     displayExpenses();
     updateSummary();
+    updateBudget();
 }
 
 loadExpenses();
@@ -211,6 +234,7 @@ function renderCharts() {
             }]
         },
         options: {
+            responsive: true,
             plugins: {
                 legend: {
                     position: 'bottom'
@@ -249,6 +273,7 @@ function renderCharts() {
         },
         options: {
             maintainAspectRatio: false,
+            responsive: true,
             plugins: {
                 title: {
                     display: true,
@@ -299,4 +324,52 @@ function renderHistory() {
 
         historyList.appendChild(dateGroup);
     });
+}
+
+
+const setBudgetBtn = document.getElementById("set-budget-btn");
+const budgetInput = document.getElementById("budget-input");
+
+setBudgetBtn.addEventListener("click", () => {
+    const budget = budgetInput.value;
+
+    if (!budget || budget <= 0) {
+        alert("Please enter a valid budget amount");
+        return;
+    }
+    localStorage.setItem("budget", budget);
+    updateBudget();
+    budgetInput.value = "";
+});
+
+function updateBudget() {
+    const set = localStorage.getItem("budget");
+
+    if (!set) {
+        document.getElementById("budget-amount").textContent = "₹0";
+        document.getElementById("budget-spent").textContent = "₹0";
+        document.getElementById("remaining-balance").textContent = "₹0";
+        return;
+    }
+
+    let total = 0;
+    for (const expense of expenses) {
+        total += Number(expense.amount);
+    }
+
+    document.getElementById("budget-amount").textContent = "₹" + set;
+    document.getElementById("budget-spent").textContent = "₹" + total;
+    document.getElementById("remaining-balance").textContent = "₹" + (set- total);
+
+    if (total > Number(set)) {
+        document.getElementById("remaining-balance").style.color = "var(--danger)";
+        if (!localStorage.getItem("budgetAlertShown")) {
+            alert("Warning! You have exceeded your monthly budget!")
+            localStorage.setItem("budgetAlertShown", "true")
+        }
+    } else {
+        document.getElementById("remaining-balance").style.color = "var(--accent)"
+        localStorage.removeItem("budgetAlertShown");
+    }
+
 }
